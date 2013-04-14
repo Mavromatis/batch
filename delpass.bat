@@ -1,15 +1,23 @@
 @echo off
-mkdir Passed
-mkdir Failed
+for /f "delims=*." %%b in ('dir /b *.7z') do (
+if not exist "%%b.test" (
+if not exist "%%b.passed" (
+Call :Dead
+)
+)
+)
 for /f "delims=*." %%a in ('dir /b *.7z') do (
 if exist "%%a.test" (
 if not exist "%%a.passed" (
+mkdir Failed
 move /y "%%a.*" Failed
 )
 )
 if exist "%%a.passed" (
+mkdir Passed
 move /y "%%a.7z" Passed
-move /y "%%a.passed" Passed 
 )
 del "%%a.*"
 )
+:Dead
+Exit /B
