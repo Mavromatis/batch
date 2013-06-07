@@ -2,7 +2,7 @@
 for /f "delims=*." %%a in ('dir /b *.7z') do (
 if not exist "%%a.passed" (
 if not exist "%%a.test" (
-"C:\Program Files (x86)\7-Zip\7z" t "%%a.7z" *.* -r > "%%a.test" & echo %%a tested.
+"C:\Program Files\7-Zip\7z" t "%%a.7z" *.* -r > "%%a.test" & echo %%a tested.
 )
 )
 )
